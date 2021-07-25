@@ -5,7 +5,7 @@ subtitle: One Hour Challenges
 cover-img: /assets/img/path.jpg
 thumbnail-img: /assets/img/thumb.png
 share-img: /assets/img/path.jpg
-tags: [books, test]
+tags: [one-hour-challenge]
 ---
 
 I want to get into a habit of doing what I call one hour challenges. Whenever I want to start a new project or learn a new technology, I always end up not even trying because of the fear of some eventual failure and not enough progress. The truth is, I'm just overthinking the project, or my goals are set too high . The one hour challenge should help me overcome these feelings and break down goals into attainable pieces. 
