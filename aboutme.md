@@ -4,13 +4,9 @@ title: About me
 subtitle: Why you'd want to go on a date with me
 ---
 
-My name is Inigo Montoya. I have the following qualities:
+My name is Tom Ebergen. I was born in Kitchener Ontario, and I moved to San Francisco when I was two and a half. After high school, I pursued a Bachelors degree in Computer Science with a minor in Combinatorics and Optimization at the University of Waterloo in Ontario. After graduating, I moved back to San Francisco and started working at [Alation](https://www.alation.com/). After two years at Alation I decided to move to Amsterdam to pursue a Masters degree in Parallel and Distributed Computing Systems.
 
-- I rock a great mustache
-- I'm extremely loyal to my family
+In my free time I enjoy playing guitar, ultimate frisbee, and golfing, and socializing with friends.
 
-What else do you need?
 
-### My story
-
-To be honest, I'm having some trouble remembering right now, so why don't you just watch [my movie](https://en.wikipedia.org/wiki/The_Princess_Bride_%28film%29) and it will answer **all** your questions.
+### To Be Continued...
