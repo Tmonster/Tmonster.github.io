@@ -1,9 +1,27 @@
 
 Join Order optimization
 
-- Preamble. The old join order optimizer was a mess. and most of it was written by me. So there you go.
+- Preamble. The old join order optimizer was a mess. and most of it was written by me, which should explain how the mess came to be. So there you go.
 
 There were two files, join order optimizer and cardinality estimator. If you know anything about join order optimization, you might be scratching your head right now. What about a cost model? What about relation extraction? What about plan enumeration? What about hypergraph construction? Well you guessed it, those logical components were all crammed into the join order optimizer. A fun 1000+ lines of code file that was nothing short of insane to debug.
+
+### Join Order Optimization, what is it really?
+
+In my humble opinion and 1.5 years of experience working on join order optimization, it's not just about reordering a query plan. I mean, it is, and it isn't. To elaborate, we can just start with the phrase join order optimization. "Join order" sounds trivial, the order in which you join tables. "Oh, ordering, so it must be similar to sorting right?" is a logical step you may take. I'm here to tell you no, if it was, the logical name would be called join sort optimization, and if that was the case, the problem would be easy, and you wouldn't be reading this blog post. 
+
+So we are starting with join ordering, let's forget that we are doing optimziation. What are we ordering? Tables. Let's start with a very very simple example. Suppose we have three tables; A, B, and C. With these three tables, we have 3 possible join orders. (A join B) join C, A join (B join C), and (A join C) join B. 
+
+##### Join ordering is a minimum spanning tree + sorting
+
+Between every two tables, you have a cost to join the two tables, 
+
+
+
+
+### Applying filters on nonreorderable operations.
+
+
+### What does the new Join Order Optimizer look like?
 
 1. Relation extraction, you don't want to directly reorder your logical plan, you need some way to treat every node as some hashable structure so that it can be placed into a dynamic programming table. This step is already hard because you need to determine what relations are reorderable and what relations are *not* reorderable. For example, inner joins are reorderable, while left joins are not. 
 
