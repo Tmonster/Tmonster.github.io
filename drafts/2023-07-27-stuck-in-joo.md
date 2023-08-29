@@ -7,18 +7,18 @@ There were two files, join order optimizer and cardinality estimator. If you kno
 
 ### Join Order Optimization, what is it really?
 
-In my humble opinion and 1.5 years of experience working on join order optimization, it's not just about reordering a query plan. I mean, it is, and it isn't. To elaborate, we can just start with the phrase join order optimization. "Join order" sounds trivial, the order in which you join tables. "Oh, ordering, so it must be similar to sorting right?" is a logical step you may take. I'm here to tell you no, if it was, the logical name would be called join sort optimization, and if that was the case, the problem would be easy, and you wouldn't be reading this blog post. 
+After working on Join Ordering for about 1.5 years, I confidently say that join order optimization is not just reordering a query plan. In a naive way it is, but it really isn't. To start, let's inspect the phrase join order optimization. "Join order" sounds trivial, the order in which you join tables. "Oh, ordering, so it must be similar to sorting right?" is a logical step you may take. I'm here to tell you no, if it was, the problem would be called join sort optimization, and sorting algorithms are pretty advanced nowadays, and join ordering would be solved. 
 
-So we are starting with join ordering, let's forget that we are doing optimziation. What are we ordering? Tables. Let's start with a very very simple example. Suppose we have three tables; A, B, and C. With these three tables, we have 3 possible join orders. (A join B) join C, A join (B join C), and (A join C) join B. 
+So why is it ordering and not sorting? If you have a set of tables you want to join, once you perform a single join between two tables (or two sets of tables), the cost to join with another table changes. The cost of joining to tables is a function of all attributes of both tables. 
 
-##### Join ordering is a minimum spanning tree + sorting
-
-Between every two tables, you have a cost to join the two tables, 
-
-
+Let's start with a very very simple example. Suppose we have three tables; A, B, and C. With these three tables, we have 3 possible join orders. (A join B) join C, A join (B join C), and (A join C) join B. 
 
 
 ### Applying filters on nonreorderable operations.
+
+#### So what are we reordering exactly?
+1. first you need to find reorderable relations and non-reorderable  relations
+2. Don't forget that left, right, and outer joins exist.
 
 
 ### What does the new Join Order Optimizer look like?
