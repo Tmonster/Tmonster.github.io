@@ -1,20 +1,55 @@
 
 Join Order optimization
 
-- Preamble. The old join order optimizer was a mess. and most of it was written by me, which should explain how the mess came to be. So there you go.
+TL;DR. I refactored the join order optimizer in duckdb (which I also originally wrote for my Masters thesis). Below are just my findings summarized into (hopefully) 500 words or less.
 
-There were two files, join order optimizer and cardinality estimator. If you know anything about join order optimization, you might be scratching your head right now. What about a cost model? What about relation extraction? What about plan enumeration? What about hypergraph construction? Well you guessed it, those logical components were all crammed into the join order optimizer. A fun 1000+ lines of code file that was nothing short of insane to debug.
+## Let's start with an example
+
+Let's take a look at three simple examples of join order optimization. These examples can explain the power of good join order optimization given the correct operators. Each example will also be references one or more times later on in this blog post.
+
+Example 1. 
+Simple A x B x C (cardinalities 10, 100, 1000)
+
+Example 2. 
+Left joins & right joins (they are not reorderable)
+
+Example 3. 
+Aggregates and window functions. You cannot reorder tables up through the operator.
+
+Example 1 shows how powerful join order optimization can be. Examples 2&3 show some of the challenges. But how can we deterministically choose a good join order? There are many papers that touch on join ordering, and you can feel free to read them if you like. To summarize all of them however, it comes down to having good cardinality estimation. This is practically proved in (how good are optimizers really?) and (my thesis). (my thesis) is where the rest of this journey starts.
+
+## The Original Organiziation
+
+There were only two files responsible for all the logic to perform join order optimization; join_order_optimizer.cpp and cardinality_estimator.cpp. These are two necessary and obvious components to Join Order Optimization, but we can break down join ordering into more logical components, each of which arguably deserve a separate file. So let's take a look at each logical step, and see how it fits into a join order optimization workflow.
 
 ### Join Order Optimization, what is it really?
 
-After working on Join Ordering for about 1.5 years, I confidently say that join order optimization is not just reordering a query plan. In a naive way it is, but it really isn't. To start, let's inspect the phrase join order optimization. "Join order" sounds trivial, the order in which you join tables. "Oh, ordering, so it must be similar to sorting right?" is a logical step you may take. I'm here to tell you no, if it was, the problem would be called join sort optimization, and sorting algorithms are pretty advanced nowadays, and join ordering would be solved. 
+After working on Join Ordering for about 12 months, I can confidently say that join order optimization is not *just* reordering a query plan. In a naive way it is, but if you know what you are doing, it really isn't. Join Order is not reordering a query plan, because it involves the following extra logic
 
-So why is it ordering and not sorting? If you have a set of tables you want to join, once you perform a single join between two tables (or two sets of tables), the cost to join with another table changes. The cost of joining to tables is a function of all attributes of both tables. 
+1. Extracting Relations & Filters
+2. Creating a query graph
+3. Enumerating potential plans (keeping track of the cost of each plan (see _cardinality estimation_))
+4. Re-building the plan
+5. Build-side/probe side optimizations.
 
-Let's start with a very very simple example. Suppose we have three tables; A, B, and C. With these three tables, we have 3 possible join orders. (A join B) join C, A join (B join C), and (A join C) join B. 
 
+### Extracting Relations & Filters. What is reorderable, what isn't.
+When we start join order optimization, we are usually presented with a logical query plan. The logical plan can have operators like joins, filters, group bys, and aggregates. 
+
+
+### Creating a query graph and understanding what a hyper graph is
+
+### Enumerating potential plans Dynamic programming style
+
+### Rebuilding the plan
+
+### More optimizations
 
 ### Applying filters on nonreorderable operations.
+
+
+## Conclusions
+
 
 #### So what are we reordering exactly?
 1. first you need to find reorderable relations and non-reorderable  relations
