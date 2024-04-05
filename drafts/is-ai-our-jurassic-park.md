@@ -8,3 +8,5 @@ Outline
 Also draw the parallel to the fact that, Richard hammond chose to develop the park on isla nublar because there were no regulations! Are there any regulations on AI currently? 
 
 https://www.w3.org/reports/ai-web-impact/ <- maybe read this and reference it potentially?
+
+https://arstechnica.com/gadgets/2024/04/fake-ai-law-firms-are-sending-fake-dmca-threats-to-generate-fake-seo-gains/
