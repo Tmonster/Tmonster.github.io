@@ -19,7 +19,12 @@ Outline v2
 1. jurassic park themes
 2. What is AI providing people with? what is AI giving to people (almost for free?)
 (with AI you have a tool, but AI cannot teach you how to take an idea and make something out of it). You can set up a website with AI, but then what are you going to do next? You haven't learned anything about setting it up, and you don't know yet how to market it, or to who.
-3. AI are the dinosaurs. They have been developing it, they have been monitoring it, but maybe they are only looking for specific things. The scientists have missed that "the AI is breeding". (but that's not even the worst part). Some event causes the AI safeguards to be brought down (don't tell me that's not possible). Then what? 
-4. What's also interesting is how little regulation there still is.
-5. My prediction for how this AI thing will go.  
-6. 
+   - DNA vs. AI (lots of simalarities)
+   - No regulation on the island
+   - It's a sort of status symbol, people love it
+   - We are testing AI in only certain features (what is it doing that we don't know about yet (i.e. using random DNA led to breeding)
+   - There will be safeguards, but how should we restart the system. 
+4. AI are the dinosaurs. They have been developing it, they have been monitoring it, but maybe they are only looking for specific things. The scientists have missed that "the AI is breeding". (but that's not even the worst part). Some event causes the AI safeguards to be brought down (don't tell me that's not possible). Then what? 
+5. What's also interesting is how little regulation there still is.
+6. My prediction for how this AI thing will go.  
+7. 
