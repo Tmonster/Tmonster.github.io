@@ -16,15 +16,19 @@ https://arstechnica.com/gadgets/2024/04/fake-ai-law-firms-are-sending-fake-dmca-
 
 
 Outline v2
-1. jurassic park themes
-2. What is AI providing people with? what is AI giving to people (almost for free?)
-(with AI you have a tool, but AI cannot teach you how to take an idea and make something out of it). You can set up a website with AI, but then what are you going to do next? You haven't learned anything about setting it up, and you don't know yet how to market it, or to who.
+1. Intro. I've been reading jurassic park again. Was cravin just a good sci-fi book. TLDR of the jurassic park theme is the classic "you were busy with what you could do, you didn't stop to think if you **should** do it. That got me thinking about AI.
+2. Parallels of how AI us being developed now and how dinosaurs were developed in the book
    - DNA vs. AI (lots of simalarities)
    - No regulation on the island
    - It's a sort of status symbol, people love it
-   - We are testing AI in only certain features (what is it doing that we don't know about yet (i.e. using random DNA led to breeding)
+   - We are testing AI in only certain features (what is it doing that we don't know about yet (i.e. using random DNA led to breeding). There is literally nothing we can directly compare AI with, besides a brain, and we still don't quite understand a brain either. In the book, they try to have zookeepers from big game reserves tending to the dinosaurs, and they don't even know what to do.
    - There will be safeguards, but how should we restart the system. 
-4. AI are the dinosaurs. They have been developing it, they have been monitoring it, but maybe they are only looking for specific things. The scientists have missed that "the AI is breeding". (but that's not even the worst part). Some event causes the AI safeguards to be brought down (don't tell me that's not possible). Then what? 
-5. What's also interesting is how little regulation there still is.
-6. My prediction for how this AI thing will go.  
-7. 
+4. Isolate why we are trying to develop AI. How should it be used vs. how will people end up using it?
+    - People should be using it as a tool, as a starting point. to formulate ideas of what might be possible.
+    - People will end up using it to be some fully atomic thing that can make decisions for some user that are not double checked.  
+(with AI you have a tool, but AI cannot teach you how to take an idea and make something out of it). You can set up a website with AI, but then what are you going to do next? You haven't learned anything about setting it up, and you don't know yet how to market it, or to who.
+5. If we draw an exact parallel, let's predict what will happen soon with AI. AI are the dinosaurs. Researchers have been developing it, they have been monitoring it, but they are only monitoring specific things. Potentially they have missed that "the AI is breeding". (but that's not even the worst part). Some event causes the AI safeguards to be brought down (don't tell me that's not possible). Then what? 
+6. My prediction for how this AI thing will go.
+    - There is still so little regulation
+    - Many jobs will be replaced because of AI, and at one point, a large flaw will be exposed in how these models work. A flaw exploitable by anybody. Companies will have to race to replace whatever AI they have in their system with humans, but at that point, no one will have the skills or any reason to work in a position previously done by AI (think fast food worker, AI replaces a majority of the positions, someone can exploit some kind of sandbox hack, giving them free meals. This hack spreads on social media, cannot be fixed quickly/easily, need to bring humans back in, so human wants minimum wage anymore). 
+
