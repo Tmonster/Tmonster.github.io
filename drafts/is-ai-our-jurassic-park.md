@@ -32,3 +32,21 @@ Outline v2
     - There is still so little regulation
     - Many jobs will be replaced because of AI, and at one point, a large flaw will be exposed in how these models work. A flaw exploitable by anybody. Companies will have to race to replace whatever AI they have in their system with humans, but at that point, no one will have the skills or any reason to work in a position previously done by AI (think fast food worker, AI replaces a majority of the positions, someone can exploit some kind of sandbox hack, giving them free meals. This hack spreads on social media, cannot be fixed quickly/easily, need to bring humans back in, so human wants minimum wage anymore). 
 
+
+Movie idea
+
+- everyone has a personal AI assistant
+- Every AI assistant has some state associated with the User (age, current lifestyle habits & personality, Income, Recent history)
+- In order to save costs, people are bucketed to different AIs (almost 100 per person).
+- But it is a global company so the AI assistant is replicated across regions, also since people are across multiple regions
+- We still need to synchronize each AI assistant, so there are synchronization protocols
+- What hapens next is power outages, and when the state synchronization needs to happen again, certain AI assistants hallucinate acknowledgments, thinking they become the master
+- This leads to a number of untracked AI assistants that don't have customers
+- When diagnostics are run, they are not picked up, because it is assumed every AI has a customer.
+
+Basically, the idea is that what happens is everybody has like a personal AI assistant, but the state of the AI assistant for personal reasons and the history of the assistant is always stored like globally on some server, but the server has to be replicated in case there’s power outages or in case the people move and you always want The state of the AI assistant to be closer to latency blah blah blah blah blah blah blah blah blah blah. The problem arises then when for some reason, the power goes out in one or more of these replicated areas and when the state of the AI needs to  Synchronize itself again they hallucinate and they all become their own AI and this is for every single person who has one of these AI.
+
+It ends up happening is people notice these anomalies but nothing seems out of place because when they go run diagnostics, they running diagnostics checking specifically for the AI that have been created via accounts. because they’re only expecting this many AI but when they start running like someone
+
+eventually someone finds out there are a lot more AIs and the system wasn’t looking for these and these AI are basically self acting and they’re not they think they’re their own cells and they’re not attached to some account anymore because they hallucinated themselves into existence. 
+Sent from my iPhone
