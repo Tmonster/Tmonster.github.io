@@ -22,7 +22,8 @@ Outline v2
    - No regulation on the island
    - It's a sort of status symbol, people love it
    - We are testing AI in only certain features (what is it doing that we don't know about yet (i.e. using random DNA led to breeding). There is literally nothing we can directly compare AI with, besides a brain, and we still don't quite understand a brain either. In the book, they try to have zookeepers from big game reserves tending to the dinosaurs, and they don't even know what to do.
-   - There will be safeguards, but how should we restart the system. 
+   - There will be safeguards, but how should we restart the system.
+   - We are also hearing now that AI development is being rushed. In the book, richard hammond rushes the development and wants to open the park ASAP. The lead researcher, Henry Wu, said that he wanted to develop the dinasoaurs more, so that they were not as aggressive and more trainable. 
 4. Isolate why we are trying to develop AI. How should it be used vs. how will people end up using it?
     - People should be using it as a tool, as a starting point. to formulate ideas of what might be possible.
     - People will end up using it to be some fully atomic thing that can make decisions for some user that are not double checked.  
