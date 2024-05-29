@@ -14,13 +14,13 @@ As I read the book many themes started to present themselves, including - don't 
 Wow, what a dumb comparison you might think, but give me the chance to convince you. I think if you've read the book recently, you probably don't think that. Let me explain a couple of reasons why I think the two are similar. 
 
 1. John Hammond was trying to replicate dinasour DNA while AI companies are trying to simulate neurons and brain activity with AI.
-
+<br>
 I can't use a quote from the book to make this comparison, but the idea is still valid. DNA is a double helix with hundreds of millions of pairs of nucleotides. These pairs encode genes, which are then expressed to create certain traits of an animal/person whatever. What sequences within the hundreds of millions of pairs are responsible for expressing the genes is not yet an exact science. Comparitively, AI aims to encode a bunch of words as vectors in a multi-dimensional space to provide similarities between words. AI also models the neurons in the brain, if you provide these simulated neurons with a question that is just many multidimensional vectors, you can get a response is another set of multi-dimensional vectors. Looking those back up in your vector encoded dictionary you can create a human understandable response. Both DNA/gene encoding and AI development, are still under active development, with experiments having side effectst that are still not yet completely understood. Sometimes weird traits are expressed from a DNA strand, but it's still not completely understood what protein within the DNA is responsible for expression that trait. Sometimes AI hallucinates, and we still don't know why. Both of these areas of science are still actively being developed.
-
+<br>
 2. The development of AI currently is not regulated. If regulation does come, it will be difficult to enforce. Similarly, a zoo for dinosaurs in Costa Rica will be hard to subject to regulatory laws.
-
+<br>
 <!-- The main reason John Hammond put Jurassic Park on an Island in Costa Rica is because he could escape regulation. Currently there is no regulation on AI. Of course, any regulation will be difficult to enforce, but governments are doing absolutely nothing to combat how fast AI is developing. They seem more focused on banning tiktok than on protecting jobs that AI is not yet ready to replace. -->
-
+<br>
 _"But InGen was obviously setting up one of the most powerful genetic engineering facilities in the world in an obscure Central American country. A country with no regulations."(page 43)_
 
 The book doesn't make it clear if Hammond chose the island for that exact reason, but the comparison still remains. There is little to no regulation on an island hundreds of miles off the coast of Costa Rica. Currently there are no regulations around AI (at least in the U.S), and no plans to make any.
