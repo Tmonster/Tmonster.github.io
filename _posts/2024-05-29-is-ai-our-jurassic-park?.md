@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Is AI our Jurassic Park
+title: Is AI our Jurassic Park?
 gh-repo: daattali/beautiful-jekyll
 gh-badge: [star, fork, follow]
 tags: [Jurassic Park, AI]
@@ -31,13 +31,13 @@ _"The original genetic engineering companies, like Genentech and Cetus, were all
 
 <!-- This is a direct quote from Hammond. ChatGPT and other AI product will most likely be seen as a tool to help develop many new products, but it will also be used to replace many jobs. Nobody will **need it** it to live, but eventually, I can imagine that going without some form of AI every day will be extremely difficult. That will then give AI companies the ability to charge what they want. -->
 
-4. We are still learning how AI behaves and responds to certain inputs, and there is literally nothing we can directly compare AI with. In the book, they try to have zookeepers from big game reserves tending to the dinosaurs with the idea that they know how to care for larger animals. However, the zookeepers don't know how to take care of dinosaurs. This lack of knowledge of how dinosaurs behave would end up leading to multiple issues within the park. 
+3. We are still learning how AI behaves and responds to certain inputs, and there is literally nothing we can directly compare AI with. In the book, they try to have zookeepers from big game reserves tending to the dinosaurs with the idea that they know how to care for larger animals. However, the zookeepers don't know how to take care of dinosaurs. This lack of knowledge of how dinosaurs behave would end up leading to multiple issues within the park. 
 
 _"And, finally, we have the unprecendented problems of caring for a population of animals that no one has ever tried to maintain before." Oh, it's not as bad as all that," Hammond said. "Yes, it is. Your're just not here to see it," Arnold said. "The tyrannosaurs drink the lagoon water and sometimes get sick; we aren't sure why. The triceratops femailes ill one another in fights for dominance and have to be separated into groups smaller than six. We don't know why. The stegosaurs frequently get blisters on their tongues and diarrhea, for reasons no one yet understands, even though we've lost two. Hypsilophodonts get skin rashses. And the velociraptors--" (page 156)_
 
 Jurassic Park still had many problems, with knowing know why or what the fix should be. With AI, as mentioned earlier, scientists are still understanding the behavior for certain AI models, but I'm sure there are still a number of smaller issues that cannot be explained yet, and they are still hidden from consumers. 
 
-6. AI development is being rushed, with newer better versions coming out every week. In the book, John Hammond rushes the development and wants to open the park ASAP. The lead researcher, Henry Wu, wants to develop the dinosaurs more, so that they were not as aggressive and more trainable.
+4. AI development is being rushed, with newer better versions coming out every week. In the book, John Hammond rushes the development and wants to open the park ASAP. The lead researcher, Henry Wu, wants to develop the dinosaurs more, so that they were not as aggressive and more trainable.
 
 <!-- _"\"You want to replace the current stock of animals?\" Hammond said. 
 \"Yes I do\". 
@@ -60,7 +60,7 @@ I would bet a lot of money that this kind of conversation happens at tech compan
 
 Later on in the book there is an argument between Hammond and the "zookeeper" for Jurassic Park. (page 155-156)
 
-7. John Hammond has researchers recreating life by developing dinosaurs. A completely new life form that **no one** has experience with. Top researchers don't quite understand how dinosaurs behave, nor do the general public. The ability to create these dinosaurs is of course amazing, but should it be exercised and released without knowing exactly how it could behave in the current environment? The following quote is from Ian Malcom, one of the researchers on the island.
+5. John Hammond has researchers recreating life by developing dinosaurs. A completely new life form that **no one** has experience with. Top researchers don't quite understand how dinosaurs behave, nor do the general public. The ability to create these dinosaurs is of course amazing, but should it be exercised and released without knowing exactly how it could behave in the current environment? The following quote is from Ian Malcom, one of the researchers on the island.
 
    _"I will tell you what I am talking about ... Most kinds of power require substantial sacrifice by whoever wants the power. There is an apprenticeship, a discipline lasting many years. Whatever kind of power you want. President of the company. Black belt in karate. Spiritual guru. Whatever it is you seek, you have to put in the time, the practice, the effort. You must give up a lot to get it. It has to be very important to you. And once you have attained it, it is your power. It can't be given away: it resides in you. It is literally the result of your discipline."_
    
