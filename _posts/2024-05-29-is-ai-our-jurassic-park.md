@@ -1,3 +1,11 @@
+---
+layout: post
+title: Is AI our Jurassic Park
+gh-repo: daattali/beautiful-jekyll
+gh-badge: [star, fork, follow]
+tags: [Jurassic Park, AI]
+comments: true
+---
 
 I recently re-read Jurassic Park by Micheal Crichton (can you believe it was a book before it was a movie and a reboot?). If you are unfamiliar with the book/movies, they tell the story of an older businessman, John Hammond, with an unrelenting desire to be the first to develop the newest form of entertainment that is the product of quikly developed private research, namely, the ability to re-create dinosaurs. The two sentence summary of the whole book is that John Hammond has some scientists come check out his Zoo for dinasours to appease his investors and make sure everything is safe. **SPOILERS** Things go terribly and people die. 
 
