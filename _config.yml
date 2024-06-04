@@ -50,23 +50,12 @@ round-avatar: true
 # You can change the order that they show up on the page by changing the order here.
 # Uncomment the links you want to show and add your information to each one.
 social-network-links:
-<<<<<<< HEAD
   email: "tom@ebergen.com"
   facebook: tomebergen
   github: Tmonster
 #  twitter: daattali
 #  patreon: DeanAttali
 #  youtube: c/daattali
-=======
-  email: "someone@example.com"
-  rss: true  # remove this line if you don't want to show an RSS link at the bottom
-  facebook: deanattali
-  github: daattali
-  twitter: daattali
-  patreon: DeanAttali
-  youtube: "@daattali"
-  whatsapp: 15551212
->>>>>>> upstream/master
 #  medium: yourname
 #  reddit: yourname
   linkedin: tomebergen
@@ -92,15 +81,9 @@ social-network-links:
 #  itchio: yourname
 #  untappd: yourname
 
-<<<<<<< HEAD
-# If you want to show a link to an RSS in the footer, add the site description here.
-# If you don't want to show an RSS link, remove the following line.
-# rss-description: This website is a virtual proof that I'm awesome
-=======
 # If you want your website to generate an RSS feed, provide a description
 # The URL for the feed will be https://<your_website>/feed.xml
-rss-description: This website is a virtual proof that I'm awesome
->>>>>>> upstream/master
+# rss-description: This website is a virtual proof that I'm awesome
 
 ###########################
 # --- General options --- #
