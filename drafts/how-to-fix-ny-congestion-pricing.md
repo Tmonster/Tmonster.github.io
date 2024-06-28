@@ -1,0 +1,1 @@
+basically deliver goods on a bike. one latge delivery to just outside the city/to a hardbor, then have a boat drive to a port in manhattan and people deliver by e-bike.
