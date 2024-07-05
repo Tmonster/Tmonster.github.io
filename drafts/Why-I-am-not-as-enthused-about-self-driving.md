@@ -7,9 +7,10 @@ tags: [Self-Driving, AI]
 comments: true
 ---
 
-I've seen many articles about self-driving cars getting the go-ahead to expand in cities/regions like San Francisco and Austin. These announcements are usually met with positive reactions from the public. There are many benefits to having self-driving cars, specifically the fact that they are safer than human drivers in most conditions. My worry, however, is that the benefits will not be as widespread as advertised. Self-driving cars will only make driving safer in a few cases, but people will still have similar costs associated with transportation, making self-driving a net-zero improvement. 
+I've seen many articles about self-driving cars getting the go-ahead to expand in cities/regions like San Francisco and Austin. These announcements have been met with mostly positive reactions from the public because of the obvious benefits of self-driving cars. Self-driving cars are safer than human drivers, and prevent stress created from driving. My worry, however, is that these benefits will not be as widespread as advertised. While the safety issues are difficult to argue, adoption will be **very** slow, and the general public will still have similar costs associated with transportation. This will mean that self driving cars only have a safety benfit (if that) with little to no social benefits or monetary benefits.
 
- 
+ <!-- Most likely, self-driving sill never be available in every car, and every car will not have the same self-driving version/product, making communication between self-driving cars a problem that will take another 10-20 years to -->
+
 To demonstrate this, let's suppose that self driving cars are legal everywhere tomorrow and self driving taxi companies have the infrastructure to accomodate 50% of all the active cars on the road. Here are my thoughts on what will happen day 0, 3 months in, 6 months in, a year in, 5 years in, and 10 years in.
 
 Day 0.
@@ -20,17 +21,18 @@ About 20% of people who commute to work in a car are using self-driving cars. Th
 
 
 6 months. 
-More adoption for daily commuters, let's say 35%. Again, for certain workers, it's just cheaper to drive their own cars. There is still rush-hour traffic. The number of accidents related to fatigue and drunk driving is 40% lower than before self-driving. Self driving cars are disabled on days with low-visibility & rain. Their behaviour is too unpredictable and has caused a number of accidents or problems during rush-hour traffic. Most self-driving cars are also only electric, so the public has range anxiety about using self-driving cars for road trips.
+More adoption for daily commuters, let's say 35%. Again, for certain workers, it's just cheaper to drive their own cars. There is still rush-hour traffic. The number of accidents related to fatigue and drunk driving is 40% lower than before self-driving. Self driving cars are disabled on days with low-visibility & rain. Their behaviour is too unpredictable and has caused a number of accidents or problems during rush-hour traffic. Most self-driving cars are still only electric, so the public has range anxiety about using self-driving cars for road trips. In addition, there have been more cases of self-driving cars that cannot handle extreme random road situations like poorly marked detours due to construction or making way for emergency vehicles in tight road situations.
 
 1 year:
-Finally we hit 50% adoption for daily commuters. There is still traffic during rush hour. These cars still cannot handle rainy or low-visibility days. 
+Finally we hit 50% adoption for daily commuters. There is still traffic during rush hour. Self-driving cars still cannot handle rainy or low-visibility days. 
 
 5 years:
-Self-driving companies have scaled up their infrastructure so 75% of cars on the road during rush hour are self driving. There is still a ban on self-driving cars during rainy days and low-visibility days, although the number of days where the ban takes effect is less than 20 days a year. With 75% of cars on the road during rush hour being self-driving cars, there is still traffic. Your commute is faster, but the 25% of cars that are not self driving, and the number of different destinations within a downtown mean that self-driving cars are suboptimial. 
+Self-driving companies have scaled up their infrastructure so 75% of cars on the road during rush hour are self driving. There is still a ban on self-driving cars during rainy days and low-visibility days, although the number of days where the ban takes effect is less than 20 days a year. With 25% of cars on the road during rush hour still being self-driving cars, there is still traffic, so your commute is only 10% faster. The number of different destinations of self-driving cars within a downtown make self-driving cars are suboptimial. Articles and research is getting published that to **really** improve traffic with self-driving, all cars on the road **need** self-driving.
 
 10 year:
-The benefits of self-driving have not improved over the last 5 years. Some people still own some type of vehicle that they can drive themselves to feel some kind of freedom. There are not many new consumer cars that can be bought because most people enjoy self-driving cars. The number of fatigue induced or drunk driving related accidents is practically 0. There are still cars on the road, causing noise pollution, and people still need a car to do many basic tasks like get milk.
-Kids are going to school without their parents in a self-driving car, seeing only a seat in front of them and none of the environment around them. All new infrastructure that is being built is being built so that it is easier to move self driving cars in and out of a parking lot. 
+The benefits of self-driving have not improved over the last 5 years. Some people still own some type of vehicle that they can drive themselves to feel some kind of freedom. The auto industry has promised to only make cars with self-driving capabilities because of their popularity. The number of fatigue induced or drunk driving related accidents is effectively 0. There are still cars on the road, causing noise pollution, and people still need a car to do many basic tasks like get milk.
+
+Many kids in suburban areas go to school without their parents in a self-driving car. They see only a car seat in front of them, or they are looking at some new Iphone 25. They have no sense of their environment or what roads they need to take to get to school. All new infrastructure that is built has identifiable markers for self driving car cameras to make self-driving safer. 
 
 
 I hope in sharing this thought experiment, people can realize that self-driving cars will not fix that much. Rush hour traffic will still be a problem, and the general public, while initially pleased with self-driving cars, will still feel the effects of isolation, loneliness, and cost that comes form requiring a car to go anywhere. 
