@@ -1,16 +1,16 @@
 ---
 layout: post
-title: Self driving cars will not have major benefits (thought experiment)
+title: Introducing self-driving will be a net-zero benefit in all areas but safety
 gh-repo: Tmonster/tmonster.github.io
 gh-badge: [star, fork, follow]
 tags: [Self-Driving, AI]
 comments: true
 ---
 
-I've seen many articles about self-driving cars getting the go-ahead to expand in cities/regions like San Francisco and Austin. These announcements are usually met with positive reactions from the public. It is hard to debate the fact that self-driving cars are generally safer than human drivers under the right conditions. What I don't understand however, is how much of a positive societal impact self driving cars will have. 
+I've seen many articles about self-driving cars getting the go-ahead to expand in cities/regions like San Francisco and Austin. These announcements are usually met with positive reactions from the public. There are many benefits to having self-driving cars, specifically the fact that they are safer than human drivers in most conditions. My worry, however, is that the benefits will not be as widespread as advertised. Self-driving cars will only make driving safer in a few cases, but people will still have similar costs associated with transportation, making self-driving a net-zero improvement. 
 
-
-Let's suppose, for the sake of argument, that self driving cars are legal everywhere tomorrow and self driving taxi companies have the infrastructure to accomodate 50% of all the active cars on the road. Here are my thoughts on what will happen on day 0, in 3 months, in 6 months, a year later, 5 years later, and 10 years later.
+ 
+To demonstrate this, let's suppose that self driving cars are legal everywhere tomorrow and self driving taxi companies have the infrastructure to accomodate 50% of all the active cars on the road. Here are my thoughts on what will happen day 0, 3 months in, 6 months in, a year in, 5 years in, and 10 years in.
 
 Day 0.
 Not much will change, some beta testers of self-driving cars are happy to use self-driving cars, but it will take a while before there is still a lot of adoption.
@@ -33,7 +33,7 @@ The benefits of self-driving have not improved over the last 5 years. Some peopl
 Kids are going to school without their parents in a self-driving car, seeing only a seat in front of them and none of the environment around them. All new infrastructure that is being built is being built so that it is easier to move self driving cars in and out of a parking lot. 
 
 
-I hope in sharing this thought experiment, people can realize that self-driving cars will not fix that much. Rush hour traffic will still be a problem, and the general public, while initially pleased with self-driving cars, will still feel the effects of isolation and loneliness that comes form requiring a car to go anywhere. 
+I hope in sharing this thought experiment, people can realize that self-driving cars will not fix that much. Rush hour traffic will still be a problem, and the general public, while initially pleased with self-driving cars, will still feel the effects of isolation, loneliness, and cost that comes form requiring a car to go anywhere. 
 
 Self-driving cars will make driving safer, and I will not argue that point here. What I will argue, however, -- at the risk of sounding like someone who think abstinence means "safe sex" -- is that if less people are driving, then overall, driving is safer. Yes, this is a blog post about urban planning. Self-driving cars will not get cars off the road, so rush hour will still exist. People will still need to open an app on their phone to go anywhere. Eventually, the general public will get tired of this and want independence from self-driving cars back, and buy a car they can drive themselves again. 
 

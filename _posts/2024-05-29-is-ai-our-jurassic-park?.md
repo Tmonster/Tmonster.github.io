@@ -1,13 +1,13 @@
 ---
 layout: post
-title: Will AI be our Jurassic Park?
+title: Will Artifical Intelligence be our Jurassic Park?
 gh-repo: Tmonster/tmonster.github.io
 gh-badge: [star, fork, follow]
 tags: [Jurassic Park, AI]
 comments: true
 ---
 
-### TL;DR: Many plot points of the Jurassic Park book are similar to how Artificial Intelligence research is being developed/marketed. Specically when considering regulations, the similarities of AI and DNA, the pace at which the two are being developed, and our incomplete understanding of the baviour of AI and genetics, specifically with a random audience like the general public.
+#### TL;DR: Many themes of the Jurassic Park book have unique parallels to the rise of Artificial Intelligence. Relaxed regulations, rapid development, and an incomplete understanding of the product are just a few of the parallel themes.
 
 I recently re-read Jurassic Park by Micheal Crichton (can you believe it was a book before it was a movie and a reboot?). If you are unfamiliar with the book/movies, they tell the story of an older businessman, John Hammond, with an unrelenting desire to be the first to develop the newest form of entertainment that is the product of quikly developed private research, namely, the ability to re-create dinosaurs. The two sentence summary of the whole book is that John Hammond has some scientists come check out his Zoo for dinasours to appease his investors and make sure everything is safe. **SPOILERS** Things go terribly and people die. 
 
@@ -15,7 +15,7 @@ As I read the book many themes started to present themselves, including - don't 
 
 Wow, what a dumb comparison you might think, but give me the chance to convince you. I think if you've read the book recently, you probably don't think that. Let me explain a couple of reasons why I think the two are similar. 
 
-#### 1. Genetically Engineering Dinosaurs and simulating Human intelligence are theoretically relatively similar to them.
+#### 1. Genetically Engineering Dinosaurs and simulating human intelligence are arguably similar.
 
  <!-- are John Hammond was trying to replicate dinasour DNA while AI companies are trying to simulate neurons and brain activity with AI. -->
 
