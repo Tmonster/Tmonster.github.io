@@ -14,20 +14,25 @@ I've seen many articles about self-driving cars getting the go-ahead to expand i
 To demonstrate this, let us suppose that self driving cars & taxis are legal tomorrow and self driving taxi companies have the infrastructure to accomodate 50% of all the active cars on the road in major metropolitan cities (i.e San Francisco, Los Angeles, Atlanta, Chicago, etc.). Tesla self driving will not be included because there are still questions about its [safety](https://www.forbes.com/sites/nicholasreimann/2023/02/16/tesla-recalls-over-360000-cars-due-to-self-driving-crash-risk/?sh=101c69aa7fb6). Here are my thoughts on what will happen after 3 months, 6 months, a year, 5 years, and 10 years.
 
 
-3 months.
+**3 months**
+
 About 20% of people who commute to work in a car are using self-driving cars. The rest of the commuters are still hesitant of the technology or find it cheaper to drive themselves. There is still rush-hour traffic since not enough self-driving cars are on the road. The number of drunk driving accidents is lower, by about 20%. The freight industry is looking into how they can install self-driving technologies on their trucks.
 
 
-6 months. 
+**6 months**
+
 35% of daily commuters are commuting with a self-driving option. For other workers, it is still cheaper to drive their own cars. This imbalance results in the continued existence of rush-hour traffic. The number of accidents related to fatigue and drunk driving is 40% lower than before self-driving. Self driving cars are disabled on days with low-visibility & rain because their behaviour is too unpredictable and has caused a number of accidents or problems during rush-hour traffic. Most self-driving cars are still only electric, so the public has range anxiety about using self-driving cars for road trips. In addition, there have been more cases of self-driving cars that cannot handle extreme random road situations like poorly marked detours due to construction or making way for emergency vehicles in tight road situations.
 
-1 year:
+**1 year**
+
 Within the year 50% of all daily commuters are using self-driving cars. There is still traffic during rush hour. Self-driving cars still cannot handle rainy or low-visibility days. The freight industry have adopted self-driving as well, and the repsonsibilities for a trucker are changing. Some cities have started initiatives to build infrastructure that is more self-driving friendly.
 
-5 years:
+**5 years**
+
 Self-driving companies have scaled up their infrastructure so 75% of cars on the road during rush hour are self driving. There is still a ban on self-driving cars during rainy days and low-visibility days, although the number of days where the ban takes effect is less than 20 days a year. With 25% of cars on the road during rush hour still being driven by humans, there is still traffic, so your commutes are only 10% faster. The number of different destinations of self-driving cars within a downtown make self-driving cars are suboptimial. Every once in a while the news has a story that all cars must be self-driving to get rid of traffic. Many cities now build road infrastructure with self-driving vehicles in mind.
 
-10 year:
+**10 years**
+
 Third party companies cna install self-driving on older cars. All new cars have self-driving features and have more of a social seating design. Product life for batteries of self-driving cars are seriously being questions. All new infrastructure that is built is designed with self-driving cars in mind, how and where to park self-driving vehicles, identifiable markers for self driving car cameras. Many errands are reduced to ordering from some box-store and having a self-driving vehicle drop off products. Many self-driving cars making deliveries are getting broken into, raising other questions about safety. 
 
 The benefits of self-driving have not improved over the last 5 years. Some people still own some type of vehicle that they can drive themselves to feel some kind of freedom. The auto industry has promised to only make cars with self-driving capabilities because of their popularity for safety reasons. The number of fatigue induced or drunk driving related accidents is effectively 0 in metropolitan areas. 
