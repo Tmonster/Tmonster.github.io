@@ -46,7 +46,7 @@ _"And, finally, we have the unprecendented problems of caring for a population o
 
 Jurassic Park still had many problems, without knowing know why or what the fix should be. With AI, as mentioned earlier, scientists are still understanding the behavior for certain AI models, but I'm sure there are still a number of smaller issues that cannot be explained yet, and they are still hidden from consumers. 
 
-#### 4. The abilites of AI are rapidly growing, with newer better versions coming out every week. John Hammond rushes the development of the dinosaurs to open the park ASAP. The lead researcher, Henry Wu, wants to wait and develop less aggressive dinosaurs.
+#### 4. The abilites of AI are rapidly growing, with newer better versions coming out every week. John Hammond rushes the development of the dinosaurs and the park so it can open ASAP. The lead researcher, Henry Wu, and the zookeeper, John Arnold want to wait and develop less aggressive dinosaurs.
 
 <!-- _"\"You want to replace the current stock of animals?\" Hammond said. 
 \"Yes I do\". 
@@ -67,9 +67,11 @@ Hammond shrugged. \"That was inevitable. We didn't want to wait. We have investo
 
 I would bet a lot of money that this kind of conversation happens at tech companies with investors, just not about dinosaurs obviously. It's clear though that the **LEAD RESEARCHER** doesn't think that the current **PRODUCTS**/dinosaurs are safe for the **GENERAL PUBLIC**, and that more time needs to be spent developing a safer version for consumption. The CEO, however, wants to appease the investors/shareholders. I imagine these conversations have happened with AI product managers & company leadership, except the situatino today is worse. The investors/shareholders for Microsoft, OpenAI, Google, and Apple are competing with each other to develop the next best version, but are probably not listening to the researchers about the ethical dilemmas, or how it could affect public safety. The companies are only thinking about their shareholders/investors.
 
-Later on in the book there is an argument between Hammond and the "zookeeper" for Jurassic Park. (page 155-156)
+Later on in the book there is an argument between Hammond and John Arnold the chief systems engineer for Jurassic Park. (page 155-156)
 
-TODO \<add quote\>: 
+_"You've got to realize that, from an engineering standpoint, Jurassic Park is by far the most ambitious theme park in history... Jurassic Park has all the problems of any amusement park, ride maintenance, queue control, transportation, food handling, living accommodations, trash disposal, security. Second we have all the problems of a major zoo -- care of the animals; health and welfare; feeding and cleanliness protection from insects, pests, allergies, and illnesses; maintenance of barrieres; and all the rest. And finally, we have the unprecedented problems of caring for a population of animals that no one has ever tried to maintain before."_
+
+Arnold, the zookeeper, then goes on to list a few of the problems they are having with the animals, and consistently mentions that no one knows what the underlying issue is, and they have no idea where to start. These conversations with Hammond show that a lot of the time, the main investors don't grasp what issues there may be and how they could put their own customers in danger. I fear this could be happening with AI, but the customers don't know.
 
 #### 5. John Hammond has researchers recreating life by developing dinosaurs. A completely new life form that **no one** has experience with. Top researchers don't quite understand how dinosaurs behave, so neither will the general public. The following quote is from Ian Malcom, one of the researchers on the island.
 
