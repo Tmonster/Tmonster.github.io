@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Self-driving distract cities and from sustainable solutions to car utopia problems
+title: Self-driving technology is distracting cities and from sustainable solutions to car utopia problems
 gh-repo: Tmonster/tmonster.github.io
 gh-badge: [star, fork, follow]
 tags: [Self-Driving, AI]
