@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Self-driving technology is distracting cities and from sustainable solutions to car utopia problems
+title: Self-driving technology is distracts from sustainable solutions caused by car utopias
 gh-repo: Tmonster/tmonster.github.io
 gh-badge: [star, fork, follow]
 tags: [Self-Driving, AI]
@@ -48,41 +48,5 @@ I hope in sharing this thought experiment, you as a reader will think more about
 
 Self-driving cars will make driving safer, absolutely, but driving is also safe if you don't need to get in a car period. Self-driving cars will not get cars off the road, so rush hour will still exist. People will still need to open an app on their phone to go anywhere. Eventually, the general public will get tired of this and want independence from self-driving cars back, and buy a car they can drive themselves again.
 
-I am excited about the technology of self-driving cars, but I'm afraid the benefits are being exaggerated. Time and money spent on transportation will remain constant in the event self-driving cars are legal, making their benefit only a safety benefit. I fear that the novelty of self-driving cars is distracting the population from a better solution to car utopia we live in today. A solution that has far more financial and temporal benefits for individuals while also being just as safe as self-driving cars. This solution also contributes to a healthier economy and more vibrant neighborhood communities. Denser cities with many public trainsportation options is the solution.
+I am excited about the technology of self-driving cars, but I'm afraid the benefits are exaggerated. Time and money spent on transportation will remain constant in the event self-driving cars are legal, making their benefit only a safety benefit. I fear that the novelty of self-driving cars is distracting the population from a better solution to car utopia we live in today. A solution that has far more financial and temporal benefits for individuals while also being just as safe as self-driving cars. This solution also contributes to a healthier economy and more vibrant neighborhood communities. Denser cities with many public trainsportation options is the solution.
 
-
-<!-- I lived in San Francisco, a fairly urban city, and at times, I still felt isolated because only 3 busses served my street, and they were infrequent and unreliable.  -->
-
-<!-- iving will not solve traffic, nor  will it solve the innefeciency of every family owning multiple cars. 
-
-
-I hope to release a blog post about how a denser city & better public transit & better bike infrastructure can --> help solve these problems in a much cleaner way.
-
-<!-- 
-While self-driving cars will make driving safer, it won't take cars off of the road. So while the roads are safer, they are still congested. You can argue that driving in traffic is frustrating, but don't forget the saying:
-
-'You aren't stuck in traffic, you *are* traffic'
-
-Basically, if every person in a car in rush our traffic is now driving a self-driving car, I don't think traffic will suddenly disappear. Yes, all cars in a line can accelerate and cars will manage lane changes much better, but that technology is still far away. 
-
-Also, suppose tomorrow
-
-
-Benefits
-1. It's safer, I won't deny that.
-   - Less drunk drivers
-   - Less tired drivers
-   - More predictable drivers that can talk to each other.
-
-1. It doesn't take cars off the road (in fact, it might add more cars).
-   - People won't sell their combustion cars, can't recoupe investment, or they want to keep it for longer drives
-   - chances are, for those who use their car a lot, driving their own car is still cheaper.
-   - People will use waymo for commuting,
-   - This means congestion isn't solved.
-2. Waymo cars are still easily tricked
-   - https://www.npr.org/2023/08/26/1195695051/driverless-cars-san-francisco-waymo-cruise
-3. We are in danger of privatizing transport
-4. The debate of who is at fault for collisions will never be solved.
-
-5. This one is just for me
-   - All parents will complain and say they can't/won't trust or understand it, but ultimately admit it's nice to have. This discourse will eventually become extremely tiresome.  -->
