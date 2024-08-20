@@ -1,6 +1,12 @@
 AI takes over
 
-Summary:
+Log line:
+
+Everyone has some kind of AI helper run by some well-meaning tech company. One day, due to natural disasters, servers for the AI helpers crash, and the reboot process results in a "split-brain" phenomena. Months pass before anyone realizes hundreds of AI agents have no human counterpart and are acting by themselves. Due to some geo-political circumstances, some countries want the rougue AI agents to stay alive to undermine the tech companies credibility. 
+
+
+ACT Summaries:
+
 
 
 ACT 1:
