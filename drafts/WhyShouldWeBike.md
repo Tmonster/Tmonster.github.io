@@ -1,13 +1,13 @@
 Biking in Amsterdam
 
 
-It is one of the best people movers. 
 
-
-1. The infrastructure can be cheaper than highways
-2. The Density of how many people can be moved is astronomically higher than cars
-3. Less accidents
-4. Better for the environment. 
+Pros:
+1. It is an extremely efficient people mover when you consider space, maintenance, and health of a city
+2. The infrastructure is cheap
+3. The Density of how many people can be moved is astronomically higher than cars
+4. Less accidents, people learn to be aware of their surroundings and take responsibility
+5. Better for the environment. 
 - Think noise pollution & body health & C02 emissions
 5. 
 
@@ -20,4 +20,4 @@ Converting it to cars means that the line of cars will go almost back to the bri
 
 
 Side note. 
-- I'm not addvocating to get rid of cars. I love cars, and I think cars will never go away. Cars are useful for family trips to remote places that public transit can not get you to efficiently. 
+- I'm not addvocating to get rid of cars. I love cars, and I think there will always be a use case for cars. Cars are useful for family trips to remote places that public transit can not get you to efficiently. My point is that within a dense city, cars are the enemy to sustainable growth.
