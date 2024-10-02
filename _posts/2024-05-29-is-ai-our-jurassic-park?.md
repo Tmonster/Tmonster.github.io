@@ -92,7 +92,7 @@ AI is being developed to be sold to the masses, but the masses won't know how to
 
 ### Ethical Reasons
 
-There are also many ethical concerns/reasons Jurassic Park can be compared to AI development, but I might save that for another blog post if I read Jurassic Park again.
+There are also many ethical concerns and/or reasons for why Jurassic Park can be compared to AI development. I will save those for another blog post when I eventually read Jurassic Park again.
 
 ### Conclusion
 
