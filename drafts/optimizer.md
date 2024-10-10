@@ -7,10 +7,144 @@ tags: [Databases, DuckDB, Optimizers]
 comments: true
 ---
 
+Optimizers is a great candidate for a love-hate relationship for data analysts -- that is, if they know optimizers exist. An optimizer can improve query performance by 100x, but every once in a while it's too smart for its own good and can ruin query performance. For most optimizers, the former occurs much more often than the latterm, but, for anyone who hath experienced the fury of  bad query performance due to the optimizer, let me attempt to persuade you to fall back in love with the optimizer.
 
-An optimizer can improve query performance by 100x. This is not the case with 99% percent of queries, but what if it is the one query you run for every dashboard refresh? Would you still choose to run your handwritten query without optimizations? Query optimizers are so advanced now they can perform optimizations that humans cannot handwrite.
+<!-- This is not the case with 99% percent of queries, but what if it is the one query you run for every dashboard refresh? Would you still choose to run your handwritten query without optimizations? Query optimizers are so advanced now they can perform optimizations that humans cannot handwrite. -->
 
-So why is it important to have an optimizer for data analytics? Well, there are a few reasons. Sometimes the general physical makeup of the data can influence the performance of a non-optimized query. Other times, changes in the make up of the data can render a previous implementation of handwritten ETL code innefficient. And finally, some logical optimizations are impossible to write by hand.
+Why is it important to have an optimizer for data analytics? In my opinion it comes down to language. The language we use to tell our data engine what we want and/or how we want it. Let's take a simple data analyst question. In this scenario, suppose we are looking at a brick and mortat chain department store or something equivalen. Or question could then be something like this
+
+"who are the top performaning managers by region"
+
+There are two classes of languages that can express this. SQL, or declarativie languages, and dataframe libraries, which you can also call imperative languages. 
+
+With SQL, we could have a query like the following
+
+```sql
+select 
+	max(store_revenues.revenue), 
+	store_revenues.region, 
+	personnel.employee_name
+from (
+	select
+		sum(sales) as revenue, 
+		region, 
+		manager_id 
+	from store_sales
+	group by region, store_id
+) store_revenues, 
+personnel,
+regions 
+where 
+	store_revenues.region = regions.region and
+	store_revenues.manager_id = personnel.id;
+```
+
+This is a little complex, but still readable. We can see that we need to query from the store_sales table, the personnel table and the regions table. What's great about declarative languages is that we only need to write **what** we want. With imperative languages, however, we also need to describe **how** we want to get it.
+
+Here is an equivalent snippet to get this information in imperative languages.
+
+```R
+# todo, dplyr code
+```
+
+```py
+# Omitting setup to a db engine
+# todo, datafusion code
+```
+
+
+This is much more wordy, and can be prone to more human error because it requires translating what you want, and how you want to get it.
+
+### No more need to describe "how" you want the data.
+
+If you are using a system that supports SQL, you get to benefit from the fact that it is a declarative language (usually, sometimes you can the database exactly how you want data stored or how you want something else done). You can just say what you want and be done with it.  The optimizer will take your statement, and figure out how to translate what you want into how the db-engine shoud get the data. Some imperative languages also have optimizers that will optimize your query, but by removing the requirement to describe "how" you want the data, you have to write less code, which (hopefully) means less bugs.
+
+### So, but what is the optimizer doing that I can't do?
+
+In my opinion, there are three categories of optimizers. Some optimizations are easy to communicate to the query engine and always improve query performance, optimizations that can be written by hand, but need to be re-written when the data changes, and optimizations that are impossible to express without language-specific functionality to the express the optimization.
+
+#### Hand optimizations 
+
+Here is a list of optimiziations that you can do by hand on your queries. Keep in mind that by doing theses optimizations by hand, you run the risk of introducing bugs into your code.
+
+Filter pushdown.
+
+##### Expression rewriting
+
+This is a simple one. Suppose you have a join condition like `select * from t1, t2 where a + b = 50`. This could be written as `select * from t1, t2 where a = 50-b`. Rewriting the expression in this way allow the planner to plan a hash join instead of a nested loop join. To the human eye, however, `a+b=50` might be nicer to write because it can communicate the combined age of two players. 
+
+##### Regex->Like Optimizations
+
+Suppose your queries involve regex matching in order to match the prefix or suffix of a string. I.e 
+`select * from t1 where regexp_matches(a, '^prefix.*)`. This is a simple prefix lookup, and without an optimizer, a regex library will be used to run the prefix check. Certain db-engines have optimized prefix lookups and can perform them 100x faster than a regex library. Again, this is possible by hand, but it's nice when this happens automatically.
+
+##### filter pullup and pushdown
+
+Suppose you have a query like `select * from t1, t2 where a + b = 50 and regexp_matches(c, '^prefix')`. Filter pull up and pushdown will automatically convert the `a=b` filter into a join filter, and will push the filter on column `c` into the scan of t2 instead of performing it at the top.
+
+
+Lets take a look at the two query plans with one taking advantage of each optimization, and the other query that is not optimzed.
+
+#### Optimizations that specific to data state
+
+The optimizations below are possible by hand. If the state of the data changes, however, it's possible that the query performance becomes worse by a factor of 100x.
+
+##### Join Order Optimization
+
+Let me try to summarize my MSc thesis in one paragraph. When executing any query, it's important to avoid keeping large amounts of data in memory. For join heavy queries, predicting the size of the join output can be difficult, and if we predict a small join output when in fact it is very large, query performance can suffer since handling large intermediate data is slow. Join order optimization attempts prevents this by looking at the stats of a table and attempting to predict the cardinality of joins to prevent an exploding join producing an unmanageable amount of data. Join Order Optimization is possible by hand of course, but when the underlying data changes, it's possible the intermediate join outputs increase, which can lead to poor query performance.
+
+
+##### Statistics Propagation
+##### Build-Side Probe Side Optimization
+
+Certain 
+
+An optimizer can perform these optimizations with up-to-date knowledge of the data every single time, so the optimization is valid for almost every state your data is in. If an analyst were to hand optimize a query, and later dump a huge amount of data into certain tables, query performance would significantly decrease, which could cause a number of problems for downstream processes.
+
+
+#### Requires specific language 
+
+These optimizers below are, in my opinion, impossible to describe without an optimizer.
+
+##### Top N optimizations 
+This is a relativly simple optimization. If you have some sql like `select a, sum(b) group by a order by a asc, limit 5` there is room to optimize this to only keep track of 5 aggregate values. Which means you won't need to store the result of `sum(b)`  for the rest of the values of `a`. 
+
+##### Join Filter Pushdown
+This is an optimizer in DuckDB that can dramatically improve the performance of hash joins and related table scans. During the hash join process, the keys of one table are stored in a hash table. Join Filter Pushdown will store the min&max values that are stored in the hash table. Then, when the probe side is executed to start checking matches, the table scan at the bottom of the probe first performs a zone map filter on the data it is scanninig to see if each tuple is within the min and max values in the build table. Confused? Imagine explaining in SQL.
+
+##### Table filter scans
+
+
+
+
+
+
+
+
+
+
+
+<!--  Well it comes down to how we as humans translate our desired data result into a language an analytics engine (or transactional engine if you use postgres) can understand. For this blog post, let's compare SQL as used in DuckDB with a dataframe library like pandas. 
+
+With SQL, you can declare what you want, making the translation between desired data to machine readable query easy. If I want some average of all sales grouped by region, my query could look something like this. -->
+
+What's nice is that SQL is declarative, and I can just write in SQL, exactly what I want. If I used pandas, I not only have to write **what** I want, but also **how** I want it retrieved.
+
+```py
+# TODO
+```
+
+With this kind of a script, you can also run into issues around eager and lazy evaluation, but that's a separate blog post. When I look at these two examples, I see the following reasons as to why an optimizer is so important
+
+- There is more human error when a human must explain **what** and **how**
+- Optimizers can tell the db-engine **how** to get the data much better than any human
+- Optimizers can optimize in ways a humans cannot explain easily
+- An optimizer can change **how** the data is retrieved based on changes in the data
+
+Why I think an optimizer is so important, is because it can tell the db engine **how** to get the data better than any human can, and in ways that we as humans can not express ourselves without using 
+
+
+Well, there are a few reasons. Sometimes the general physical makeup of the data can influence the performance of a non-optimized query. Other times, changes in the make up of the data can render a previous implementation of handwritten ETL code innefficient. And finally, some logical optimizations are impossible to write by hand.
 
 ## The problem to optimize
 
