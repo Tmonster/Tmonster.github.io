@@ -7,17 +7,19 @@ tags: [Databases, DuckDB, Optimizers]
 comments: true
 ---
 
+An optimizer can improve query performance by more than 100x. This is not the case with 99% percent of queries, but what if it is the one query you run for every dashboard refresh? Would you still choose to run your handwritten query without optimizations? Query optimizers are so advanced now they can perform optimizations that humans cannot handwrite.
 
-An optimizer can improve query performance by 100x. This is not the case with 99% percent of queries, but what if it is the one query you run for every dashboard refresh? Would you still choose to run your handwritten query without optimizations? Query optimizers are so advanced now they can perform optimizations that humans cannot handwrite.
+So why is it important to have a query optimizer for a DBMS or any kind of data analytics? There is one main reason. SQL (and most other query languages) don't let you express how a query should be physically executed. SQL is a declarative language at heart, which means you just write **what** you want, and not **how** you want to get it. This means it is hard to tell a database to perform a filter above a table scan in SQL, or to rewrite certain expressions so that a join condition becomes an equality condition. What you can easily do in SQL, however, is tell it exactly what you want, and that's what you will get. You don't have to mess with 20 different lines of code that carefully craft subsets of filtered data so that a join is less expensive. Write SQL to say what you want, and the optimzer (theoretically) tells the DBMS how to get it while maintaining logical equivalence to the original query.
 
-So why is it important to have an optimizer for data analytics? Well, there are a few reasons. Sometimes the general physical makeup of the data can influence the performance of a non-optimized query. Other times, changes in the make up of the data can render a previous implementation of handwritten ETL code innefficient. And finally, some logical optimizations are impossible to write by hand.
 
-## The problem to optimize
+
+
+<!-- ## Some Examples
 
 We will use the tpch dataset for this problem. To compare the performance with optimization and without optimization, each scenario will be performed with the optimizer on and with the optimizer off. The queries will be written specifically to show the important of one optimizer. (yes, there are multiple optimizers).
+ -->
 
-
-### Optimizing based on operators
+### You can't express physical execution in SQL
 
 
 Some optimizations are purely optimizations based on how the data physically moves through the CPU&memory to execute the logical task. Some of these optimizations are possible by hand, but usually they are not. Below is a query that takes advantage of 3 optimizations that occur because the optimize how data physically moves from memory to the CPU.
@@ -102,7 +104,7 @@ Well, Join Order Optimization came into play. This optimizer knows what physical
 
 You may now think, oh, but I can just do that myself when I write the query. You may be right, but that leads me to my next reason why optimizers are extremely important
 
-### Optimizing the non-human-optimizable -- Or when data changes
+### Data can change, which means the query should change (physically)
 
 <!-- join order optimizer -->
 <!-- Top N optimizer -->
