@@ -8,6 +8,12 @@ comments: true
 ---
 
 
+I work on the Optimizer at DuckDB and have been wanting to write a blog post about how amazing they are for a while. Before I can emphasize the importance of optimizers though, I need to talk about the language we (data analysts/query writers etc.) use to express our data desires. 
+
+
+
+
+
 <!-- An optimizer can improve query performance by more than 100x. This is not the case with 99% percent of queries, but what if it is the one query you run for every dashboard refresh? Would you still choose to run your handwritten query without optimizations? Query optimizers are so advanced now they can perform optimizations that humans cannot handwrite.
 
 So why is it important to have a query optimizer for a DBMS or any kind of data analytics? There is one main reason. SQL (and most other query languages) don't let you express how a query should be physically executed. SQL is a declarative language at heart, which means you just write **what** you want, and not **how** you want to get it. This means it is hard to tell a database to perform a filter above a table scan in SQL, or to rewrite certain expressions so that a join condition becomes an equality condition. What you can easily do in SQL, however, is tell it exactly what you want, and that's what you will get. You don't have to mess with 20 different lines of code that carefully craft subsets of filtered data so that a join is less expensive. Write SQL to say what you want, and the optimzer (theoretically) tells the DBMS how to get it while maintaining logical equivalence to the original query.
@@ -18,53 +24,56 @@ Optimizers is a great candidate for a love-hate relationship for data analysts -
 
 <!-- This is not the case with 99% percent of queries, but what if it is the one query you run for every dashboard refresh? Would you still choose to run your handwritten query without optimizations? Query optimizers are so advanced now they can perform optimizations that humans cannot handwrite. -->
 
-Why is it important to have an optimizer for data analytics? In my opinion it comes down to language and communication, specifically how we communicate with our database systems between what we want and how we want it retrieved. Let's take a very simple SQL query. 
+Why is it important to have an optimizer for data analytics? In my opinion it comes down to language and communication, specifically how we communicate with our database systems between what we want and how we want it retrieved. Let's take a very simple SQL query on a database managing soccer players
+
+In this scenario, I want to know what players who have a combined age of 50 share similar prefix for their last name. In the Netherlands "De" is a [very](https://nl.wikipedia.org/wiki/Nyck_de_Vries) [common](https://nl.wikipedia.org/wiki/Hugo_de_Jonge) [prefix](https://nl.wikipedia.org/wiki/Frenkie_de_Jong) in last names, so we will use that. 
 
 There are two classes of languages that can express this. SQL, or declarativie languages, and dataframe libraries, which you can also call imperative languages. 
 
 With SQL, we could have a query like the following
 
+
 ```sql
-select 
-	max(store_revenues.revenue), 
-	store_revenues.region, 
-	personnel.employee_name
-from (
-	select
-		sum(sales) as revenue, 
-		region, 
-		manager_id 
-	from store_sales
-	group by region, store_id
-) store_revenues, 
-personnel,
-regions 
+select *
+from 
+ 	players p1,
+ 	players p2 
 where 
-	store_revenues.region = regions.region and
-	store_revenues.manager_id = personnel.id;
+	p1.age + p2.age = 50 and 
+	regexp_matches(p1.last_name, '^De') and 
+	regexp_matches(p2.last_name, '^De')
 ```
+We join the table together to get all combinations, then only select those where the combined age is 50.
 
-This is a little complex, but still readable. We can see that we need to query from the store_sales table, the personnel table and the regions table. What's great about declarative languages is that we only need to write **what** we want. With imperative languages, however, we also need to describe **how** we want to get it.
-
-Here is an equivalent snippet to get this information in imperative languages.
+In a dataframe library like datafusion or dplyr the query looks like the following
 
 ```R
-# todo, dplyr code
+# filtered_players_1 <- players %>%
+#   filter(grepl("^De", last_name)) %>%
+#   select(first_name, last_name, age)
+
+players <- filtered_players %>% join(filtered_players, 'age + age = 50') %>% filter(t1.age + t2.age = 50)
 ```
+
+Here it is a bit more tricky. We can't really self-join in Dplyr without first declaring the dataframe to start. 
 
 ```py
-# Omitting setup to a db engine
-# todo, datafusion code
+# TODO: datafusion
 ```
 
 
-This is much more wordy, and can be prone to more human error because it requires translating what you want, and how you want to get it.
+This is a little complex, but still readable. We can see that we need to query players table, then get all combinations of two players and check the sum of their ages. The difference between the two is understanding that in SQL you can describe **what** you want, but in dplyr you need to describe **what** you want, and **how** you want it. This is the difference between Declarative Languages (SQL) and Imperative Languages (dataframe languages). 
+
+An attentive reader may see that the Imperative Languages (i.e DataFrame libarry) requires a bit more verbeage. This is natural though, since first you need to tell dplyr how to get some of the data, then you can tell it how to combine the data. Sometimes this is nice, but depending on how the query is written and if you have eager execution or not, it's actually not that nice. It's also more code, which can lead to more errors. It's also not portable. SQL is always SQL. Dply is not pandas which is not datafusion. So why is SQL better, and what do optimizers have to do with this?
 
 ### No more need to describe "how" you want the data.
 
-If you are using a system that supports SQL, you get to benefit from the fact that it is a declarative language (usually, sometimes you can the database exactly how you want data stored or how you want something else done). You can just say what you want and be done with it.  The optimizer will take your statement, and figure out how to translate what you want into how the db-engine shoud get the data. Some imperative languages also have optimizers that will optimize your query, but by removing the requirement to describe "how" you want the data, you have to write less code, which (hopefully) means less bugs.
+If you are using a system that supports SQL, you get to benefit from the fact that it is a declarative language (usually, sometimes you can tell the database exactly how you want data stored or how you want something else done). You can just say what you want and be done with it.  This is where the optimizer comes in. The optimizer will take your statement, and figure out the **how**. It will translate **what** you want into language the db-engine understand and can execute. Not only does it do that, it is so tight with the engine that it can make optimizations a human cannot make by hand. (Yes, I skipped the step that the parser will to translating from SQL to a query tree, but to avoid explaining how a database system works in its entirity I've skipped that step.) 
 
-### So, but what is the optimizer doing that I can't do?
+
+It is true that some imperative and dataframe languages have optimizers as well, but by removing the requirement to describe "how" you want the data, you have to write less code, which usually means less bugs. It also makes your code more portable, since SQL in DuckDB is SQL in BigQuery.
+
+### OK, but what is the optimizer doing that I can't do?
 
 In my opinion, there are three categories of optimizers. Some optimizations are easy to communicate to the query engine and always improve query performance, optimizations that can be written by hand, but need to be re-written when the data changes, and optimizations that are impossible to express without language-specific functionality to the express the optimization.
 
@@ -333,3 +342,23 @@ Why is working on an optimizer so difficult? I guess normally the workflow for p
 
 
  
+
+<!-- ```sql
+select 
+	max(store_revenues.revenue), 
+	store_revenues.region, 
+	personnel.employee_name
+from (
+	select
+		sum(sales) as revenue, 
+		region, 
+		manager_id 
+	from store_sales
+	group by region, store_id
+) store_revenues, 
+personnel,
+regions 
+where 
+	store_revenues.region = regions.region and
+	store_revenues.manager_id = personnel.id;
+``` -->
