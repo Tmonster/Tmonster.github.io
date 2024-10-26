@@ -1,306 +1,3 @@
----
-layout: post
-title: Optimizers: The Good, the bad, and the "Does My System do This?"
-gh-repo: duckdb/duckdb-web
-gh-badge: [star, fork, follow]
-tags: [Databases, DuckDB, Optimizers]
-comments: true
----
-
-
-I work on the Optimizer at DuckDB and have been wanting to write a blog post about how amazing and powerful they are for a while. Before I can really emphasize the importance of optimizers though, I need to talk about different types of query languges.
-
-There are two main query language types, imperative and declarative. They let how express granular details of what should be done when. Dataframe library languages are usually imperative languages. Declarative languages let you express what you want, and the execution engine figures out itself how to get it.
-
-The main difference between imperative and declarative languages is how programmers approach writing them. With an imperative language, you have to express two things usually; **what** data you want, and **how** you want to data retrieved/processed. With query languages, you only have to express one thing, namely **what** data you want. 
-
-
-Let's look at a quick example, starting with an imperative language (the dplyr library). Let's retrieve some information from the taxi dataset, specifically what five neighborhood trips in Manhattan are the most popular/have the most rides . 
-
-```R
-popular_manhattan_cab_rides <- taxi_data_2019 |>
-  inner_join(zone_map, by=join_by(pickup_location_id == LocationID)) |>
-  inner_join(zone_map, by=join_by(dropoff_location_id == LocationID)) |>
-  filter(Borough.x == "Manhattan", Borough.y=="Manhattan") |>
-  select(start_neighborhood = Zone.x, end_neighborhood = Zone.y) |>
-  summarise(
-    num_trips = n(),
-    .by = c(start_neighborhood, end_neighborhood),
-  ) |>
-  arrange(desc(num_trips))
-
-```
-
-Let's compare that to a SQL query
-
-```SQL
--- q3 in sql
-
-select pickup.zone pickup_zone, dropoff.zone dropoff_zone, count(*) as num_trips
-from 
-	zone_lookups pickup, 
-	zone_lookups dropoff,
-	taxi_data_2019 data
-where 
-	pickup.LocationID = data.pickup_location_id and
-	dropoff.LocationID = data.dropoff_location_id
-	and
-	pickup.Borough = 'Manhattan' and 
-	dropoff.Borough = 'Manhattan'
-group by pickup_zone, dropoff_zone
-order by num_trips desc;
-```
-
-At first glance the two seem similar, after all they produce the same results. They are different, however, when you read it as a list of instructions or a description of data. In dplyr, we can read the query as a list of instructions like so
-
-```R
-# Read the taxi_data_2019 data set
-taxi_data_2019 |>
-# inner join it with zone map on condition X
-inner_join(zone_map, ...) |>
-# inner join it again with zone map on condition Y
-inner_join(zone_map, ...) |>
-# now filter the result so pickup and dropoff are in Manhattan
-filter(Borough.x == "Manhattan", Borough.y=="Manhattan") |>
-# Now select just two columns
-  select(start_neighborhood = Zone.x, end_neighborhood = Zone.y) |>
-# and summarise and group them
-  summarise(
-    num_trips = n(),
-    .by = c(start_neighborhood, end_neighborhood),
-  ) |>
-# and order them
-  arrange(desc(num_trips))
-```
-
-In SQL, the query logically summarizes into the following
-
-```SQL
-select                         
--- Produce these columns
-	pickup.zone pickup_zone, 
-	dropoff.zone dropoff_zone, 
-	count(*) as num_trips
-from ...
--- from these tables
-where ...
--- with these filters.
-group by pickup_zone, dropoff_zone
--- group the results by pickup_zone, dropoff_zone, 
--- counting the number of entries in each group
-order by num_trips desc;
--- order them in decreasing order.
-```
-
-Hopefully now the difference is more clear. With Dplyr, the verbs usually occur in an order that the user wants them to occur when their query is executed. With SQL, the verbs are to express what the state of the data should be when it is returned.
-
-### What does this have to do with optimizers?
-
-Since SQL doesn't describe an ordering of the operations, something else needs to establish the order of the operations. What happens is the parser first parses the query and comes up with a very bad order for the operations, and then the optimizer reorders the operations so that the query runs efficiently. 
-
-Let's examine the plan from the SQL query above and try to understand what the optimizer is doing. Before the optimizer runs, the plan is quite basic. 
-
-```
-┌───────────────────────────┐
-│          ORDER_BY         │
-│    ────────────────────   │
-│     count_star() DESC     │
-└─────────────┬─────────────┘
-┌─────────────┴─────────────┐
-│       HASH_GROUP_BY       │
-│    ────────────────────   │
-│          Groups:          │
-│             #0            │
-│             #1            │
-│                           │
-│        Aggregates:        │
-│        count_star()       │
-│                           │
-│       ~84393604 Rows      │
-└─────────────┬─────────────┘
-┌─────────────┴─────────────┐
-│         PROJECTION        │
-│    ────────────────────   │
-│        pickup_zone        │
-│        dropoff_zone       │
-│                           │
-│       ~84393604 Rows      │
-└─────────────┬─────────────┘
-┌─────────────┴─────────────┐
-│           FILTER          │
-│    ────────────────────   │
-│       ((LocationID =      │
-│  pickup_location_id) AND  │
-│       (LocationID =       │
-│  dropoff_location_id) AND │
-│ (Borough = CAST('Manhattan│
-│    ' AS VARCHAR)) AND     │
-│ (Borough = CAST('Manhattan│
-│      ' AS VARCHAR)))      │
-│                           │
-│       ~84393604 Rows      │
-└─────────────┬─────────────┘
-┌─────────────┴─────────────┐
-│       CROSS_PRODUCT       ├───────────────────────────────────────────┐
-└─────────────┬─────────────┘                                           │
-┌─────────────┴─────────────┐                             ┌─────────────┴─────────────┐
-│       CROSS_PRODUCT       │                             │         SEQ_SCAN          │
-│                           │                             │    ────────────────────   │
-│                           ├──────────────┐              │         taxi_data         │
-│                           │              │              │                           │
-│                           │              │              │       ~84393604 Rows      │
-└─────────────┬─────────────┘              │              └───────────────────────────┘
-┌─────────────┴─────────────┐┌─────────────┴─────────────┐
-│         SEQ_SCAN          ││         SEQ_SCAN          │
-│    ────────────────────   ││    ────────────────────   │
-│        zone_lookups       ││        zone_lookups       │
-│                           ││                           │
-│         ~265 Rows         ││         ~265 Rows         │
-└───────────────────────────┘└───────────────────────────┘
-```
-
-
-The cross products make executing this query extremely inefficient. This is one area where the optimizer can help. Specifically, filter pushdown will help enormously. Here is the plan with optimizations enabled.
-
-
-```
-┌───────────────────────────┐
-│          ORDER_BY         │
-│    ────────────────────   │
-│        count_star()       │
-└─────────────┬─────────────┘
-┌─────────────┴─────────────┐
-│         PROJECTION        │
-│    ────────────────────   │
-│        Expressions:       │
-│             0             │
-│             1             │
-│         num_trips         │
-│                           │
-│         ~265 Rows         │
-└─────────────┬─────────────┘
-┌─────────────┴─────────────┐
-│         PROJECTION        │
-│    ────────────────────   │
-│        Expressions:       │
-│             #0            │
-│             #1            │
-│             #2            │
-│                           │
-│         ~265 Rows         │
-└─────────────┬─────────────┘
-┌─────────────┴─────────────┐
-│         AGGREGATE         │
-│    ────────────────────   │
-│          Groups:          │
-│        pickup_zone        │
-│        dropoff_zone       │
-│                           │
-│        Expressions:       │
-│        count_star()       │
-│                           │
-│         ~265 Rows         │
-└─────────────┬─────────────┘
-┌─────────────┴─────────────┐
-│      COMPARISON_JOIN      │
-│    ────────────────────   │
-│      Join Type: INNER     │
-│                           │
-│        Conditions:        ├───────────────────────────────────────────┐
-│   (pickup_location_id =   │                                           │
-│         LocationID)       │                                           │
-│                           │                                           │
-│       ~1977517 Rows       │                                           │
-└─────────────┬─────────────┘                                           │
-┌─────────────┴─────────────┐                             ┌─────────────┴─────────────┐
-│      COMPARISON_JOIN      │                             │          SEQ_SCAN         │
-│    ────────────────────   │                             │    ────────────────────   │
-│      Join Type: INNER     │                             │          Filters:         │
-│                           │                             │  Borough='Manhattan' AND  │
-│        Conditions:        ├──────────────┐              │     Borough IS NOT NULL   │
-│   (dropoff_location_id =  │              │              │                           │
-│         LocationID)       │              │              │        zone_lookups       │
-│                           │              │              │                           │
-│       ~12744000 Rows      │              │              │          ~45 Rows         │
-└─────────────┬─────────────┘              │              └───────────────────────────┘
-┌─────────────┴─────────────┐┌─────────────┴─────────────┐
-│          SEQ_SCAN         ││          SEQ_SCAN         │
-│    ────────────────────   ││    ────────────────────   │
-│         taxi_data         ││          Filters:         │
-│                           ││  Borough='Manhattan' AND  │
-│                           ││     Borough IS NOT NULL   │
-│                           ││                           │
-│                           ││        zone_lookups       │
-│                           ││                           │
-│       ~84393604 Rows      ││          ~45 Rows         │
-└───────────────────────────┘└───────────────────────────┘
-```
-
-Here you can see that the filters are pushed down into the scans. This **does not** currently happen in the dplyr query. In the dplyr query the filter is performed after the join. To get the same result in dplyr, you need to join on already filtered data. So the query will look like this,
-
-
-```R
-popular_manhattan_cab_rides <- taxi_data_2019 |>
-  inner_join(zone_map |> filter(Borough == "Manhattan"), by=join_by(pickup_location_id == LocationID)) |>
-  inner_join(zone_map |> filter(Borough == "Manhattan", by=join_by(dropoff_location_id == LocationID)) |>
-```
-
-This is not as intuitive to write. 
-
-You can also see that `INNER` joins are automatically planned. This done by the join order optimizer.
-
-Filter pushdown is one of the many optimizations that make an optimizer great. There are many more optimizations that I explain later in this blog post, but first I want to address a common response to disregarding optimization processes.
-
-## What if I know better than the optimizer?
-
-In very rare cases, it is possible to hand write a query that produces a better plan than the optimizer. In all other cases, however, the optimizer can produce a better plan. In addition to that, the data makeup can change, making a hand optimized query perform miserably once the data has been updated. A simple example of this involves the join order optimizer. 
-
-Suppose you have the following tables in your dataset, orders and parts. Suppose a dashboard shows what the most popular parts being orderd. A hand optimized query would look like this
-
-```SQL
-select
-	parts.p_id
-	parts.part_name,
-	count(*) as ordered_amount
-from 
-	orders INNER JOIN
-	parts 
-on
-	orders.pid = parts.id
-group by 
-parts.p_id;
-```
-
-Without getting into too many details about how hash joins work, this query will result in a plan that builds a hash table on the parts table and then probes it with the orders table. Imagine that this company immediately starts to offfer 100,000 more parts because they just signed a deal with some new supplier? Since it's a small company they also don't have that many orders. This query becomes extremely slow now, because building a hash table on a table with cardinality 100,000 is not very performant. The join order optimizer will be able to inspect the statistics of the table during the optimization process and produce a new plan according to the new state of the data. 
-
-This is just one optimization that responds to the changing state of the data, there are more listed in the full list below.
-
-So if you really think you are smarter than the optimizer, ask yourself if you have also predicted all possible updates to the data and have hand-optimized for those as well.
-
-
-### The optimizer knows the system it is optimizing for.
-
-There is one more "class" or "family" of optimizations I wan to talk about. These are optimizations that are impossible to write by hand. They include, but are not limited to, filter pushdown into scan, the TopN optimization, and the join filter pushdown optimization.
-
-Let me briefly explain the join filter pushdown optimization. The join filter pushdown optimization works in scenarios where the build side of a hash join has a subset of the join keys. In it's current state the join filter pushdown optimizer keeps track of the minimum key and maximum value key and pushes a table filter into the probe side to filter out keys greater than the maximum join value and smaller than the minimum join value. 
-
-
-Below is a query that can demonstrate this. The table filter isn't necessarily shown in the plans, but turning the join filter pushdown on and off can show the performance effects very nicely
-
-```SQL
---TODO
-```
-
-### list of all optimizers
-
--- TODO:
-
-
-
-## Conclusion
-
-A well written optimizer can provide significant performance improvements when allowed to optimize freely. Not only can the optimizer perform optimzations that are easy for humans to miss, an optimizer can remain useful when data changes. To really become a powerful data analyst or data engineer, understanding optimizer abilities for a system is very important. Without a sufficient optimizer, queries need to be hand optimized, and when they are hand optimized, any change in the state of the data can cause query performance to degrade significantly.
-
 
 
 <!-- for query effeciency and can help data anlysts focus only on what the data should look like instead of how it should be retrieved. If there ever is a problem with the optimizer pleas file an issue! :smile:. -->
@@ -654,3 +351,91 @@ where
 	store_revenues.region = regions.region and
 	store_revenues.manager_id = personnel.id;
 ``` -->
+
+
+
+I work on the Optimizer at DuckDB and have been wanting to write a blog post about how amazing and powerful they are for a while. Before I can really emphasize the importance of optimizers though, I need to talk about different types of query languges.
+
+There are two main query language types, imperative and declarative. They let how express granular details of what should be done when. Dataframe library languages are usually imperative languages. Declarative languages let you express what you want, and the execution engine figures out itself how to get it.
+
+The main difference between imperative and declarative languages is how programmers approach writing them. With an imperative language, you have to express two things usually; **what** data you want, and **how** you want to data retrieved/processed. With query languages, you only have to express one thing, namely **what** data you want. 
+
+
+Let's look at a quick example, starting with an imperative language (the dplyr library). Let's retrieve some information from the taxi dataset, specifically what five neighborhood trips in Manhattan are the most popular/have the most rides . 
+
+```R
+popular_manhattan_cab_rides <- taxi_data_2019 |>
+  inner_join(zone_map, by=join_by(pickup_location_id == LocationID)) |>
+  inner_join(zone_map, by=join_by(dropoff_location_id == LocationID)) |>
+  filter(Borough.x == "Manhattan", Borough.y=="Manhattan") |>
+  select(start_neighborhood = Zone.x, end_neighborhood = Zone.y) |>
+  summarise(
+    num_trips = n(),
+    .by = c(start_neighborhood, end_neighborhood),
+  ) |>
+  arrange(desc(num_trips))
+
+```
+
+Let's compare that to a SQL query
+
+```SQL
+-- q3 in sql
+
+select pickup.zone pickup_zone, dropoff.zone dropoff_zone, count(*) as num_trips
+from 
+	zone_lookups pickup, 
+	zone_lookups dropoff,
+	taxi_data_2019 data
+where 
+	pickup.LocationID = data.pickup_location_id and
+	dropoff.LocationID = data.dropoff_location_id
+	and
+	pickup.Borough = 'Manhattan' and 
+	dropoff.Borough = 'Manhattan'
+group by pickup_zone, dropoff_zone
+order by num_trips desc;
+```
+
+At first glance the two seem similar, after all they produce the same results. They are different, however, when you read it as a list of instructions or a description of data. In dplyr, we can read the query as a list of instructions like so
+
+```R
+# Read the taxi_data_2019 data set
+taxi_data_2019 |>
+# inner join it with zone map on condition X
+inner_join(zone_map, ...) |>
+# inner join it again with zone map on condition Y
+inner_join(zone_map, ...) |>
+# now filter the result so pickup and dropoff are in Manhattan
+filter(Borough.x == "Manhattan", Borough.y=="Manhattan") |>
+# Now select just two columns
+  select(start_neighborhood = Zone.x, end_neighborhood = Zone.y) |>
+# and summarise and group them
+  summarise(
+    num_trips = n(),
+    .by = c(start_neighborhood, end_neighborhood),
+  ) |>
+# and order them
+  arrange(desc(num_trips))
+```
+
+In SQL, the query logically summarizes into the following
+
+```SQL
+select                         
+-- Produce these columns
+	pickup.zone pickup_zone, 
+	dropoff.zone dropoff_zone, 
+	count(*) as num_trips
+from ...
+-- from these tables
+where ...
+-- with these filters.
+group by pickup_zone, dropoff_zone
+-- group the results by pickup_zone, dropoff_zone, 
+-- counting the number of entries in each group
+order by num_trips desc;
+-- order them in decreasing order.
+```
+
+Hopefully now the difference is more clear. With Dplyr, the verbs usually occur in an order that the user wants them to occur when their query is executed. With SQL, the verbs are to express what the state of the data should be when it is returned.
