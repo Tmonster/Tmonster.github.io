@@ -6,7 +6,7 @@ tags: ["deep dive"]
 excerpt: "The query optimizer is an important part of any analytical database system as it provides considerable performance improvements compared to hand-optimized queries, even as the state of your data changes."
 ---
 
-> This blog post was also posted on the DuckDB website. You can find it [here](https://duckdb.org/2024/11/14/optimizers)
+> This blog post is also on the DuckDB website (where I work). You can find it [here](https://duckdb.org/2024/11/14/optimizers)
 
 Optimizers don't often give "main character" energy in the database community. Databases are usually popular because of their performance, ease of integration, or reliability. As someone who mostly works on the optimizer in DuckDB, I have been wanting to write a blog post about how important optimizers are and why they merit more recognition. In this blog post we will analyze queries that fall into one of three categories: unoptimized, hand-optimized, and optimized by the DuckDB query optimizer. I will also explain why built-in optimizers are almost always better than any hand optimizations. Hopefully, by the end of this blog post, you will agree that optimizers play a silent, but vital role when using a database. Let's first start by understanding where in the execution pipeline query optimization happens.
 
