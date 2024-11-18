@@ -1,14 +1,14 @@
 ---
 layout: post
 title: "Optimizers: The Low-Key MVP"
-author: Tom Ebergen
+author: "Tom Ebergen"
 tags: ["deep dive"]
 excerpt: "The query optimizer is an important part of any analytical database system as it provides considerable performance improvements compared to hand-optimized queries, even as the state of your data changes."
 ---
 
-> This blog post is also on the DuckDB website (where I work). You can find it [here](https://duckdb.org/2024/11/14/optimizers)
+> This blog post is also on the DuckDB website (where I work). You can find it [here](https://duckdb.org/2024/11/14/optimizers). It was also posted to Hackernews by an anonymous poster, link [here](https://news.ycombinator.com/item?id=42156430).
 
-Optimizers don't often give "main character" energy in the database community. Databases are usually popular because of their performance, ease of integration, or reliability. As someone who mostly works on the optimizer in DuckDB, I have been wanting to write a blog post about how important optimizers are and why they merit more recognition. In this blog post we will analyze queries that fall into one of three categories: unoptimized, hand-optimized, and optimized by the DuckDB query optimizer. I will also explain why built-in optimizers are almost always better than any hand optimizations. Hopefully, by the end of this blog post, you will agree that optimizers play a silent, but vital role when using a database. Let's first start by understanding where in the execution pipeline query optimization happens.
+Optimizers don't often give "main character" energy in the database community. Databases are usually popular because of their performance, ease of integration, or reliability. As someone who mostly works on the optimizer in DuckDB, I have been wanting to write a blog post about how important optimizers are and why they merit more recognition. In this blog post we will analyze queries that fall into one of three categories: unoptimized, hand-optimized, and optimized by the DuckDB query optimizer. I will also explain why built-in optimizers are almost always better than any hand optimizations. Hopefully, by the end of this blog post, you will agree that optimizers play a silent, but vital role when using a database. Let's first start by understanding where in the execution pipeline query optijomization happens.
 
 Before any data is read from the database, the given SQL text must be parsed and validated. If this process finishes successfully, a tree-based query plan is created. The query plan produced by the parser is naïve, and can be extremely inefficient depending on the query. This is where the optimizer comes in, the inefficient query plan is passed to the optimizer for modification and, you guessed it, optimization. The optimizer is made up of many optimization rules. Each rule has the ability to reorder, insert, and delete query operations to create a slightly more efficient query plan that is also logically equivalent. Once all the optimization rules are applied, the optimized plan can be much more efficient than the plan produced by the parser.
 
@@ -252,7 +252,7 @@ Here is a breakdown of running the queries with and without the optimizer as the
 | \|orders\| = 10M  | 0.240 s     | 0.044 s   |
 | \|orders\| = 100M | 2.266 s     | 0.259 s   |
 
-At first the different in execution time is not really noticeable, so no one would think a query rewrite would be the solution. But once enough orders are reached, waiting 2 seconds every time the dashboard loads becomes tedious. If the optimizer is enabled, the query performance improves by a factor of 10×. So if you every think you have identified a scenario where you are smarter than the optimizer, make sure you have also thought about all possible updates to the data and have hand-optimized for those as well.
+At first the difference in execution time is not really noticeable, so no one would think a query rewrite would be the solution. But once enough orders are reached, waiting 2 seconds every time the dashboard loads becomes tedious. If the optimizer is enabled, the query performance improves by a factor of 10×. So if you ever think you have identified a scenario where you are smarter than the optimizer, make sure you have also thought about all possible updates to the data and have hand-optimized for those as well.
 
 ## Optimizations That Are Impossible by Hand
 
@@ -264,7 +264,7 @@ With a small change, we can use the query from above to demonstrate this. Suppos
 
 Imagine trying to express this logic in your favorite data frame API; it would be extremely difficult and error-prone. The library would need to implement this optimization automatically for all hash joins. The Join Filter Pushdown optimization can improve query performance by 10x, so it should be a key factor when deciding what analytical system to use.
 
-If you use a data frame library like [collapse](https://github.com/SebKrantz/collapse), [pandas](https://github.com/pandas-dev/pandas), [data.table](https://github.com/Rdatatable/data.table), [modin](https://github.com/modin-project/modin), then you are most likely not enjoying the benefits of query optimization techniques. This means your optimizations need to be applied by hand, which is sustainable if your data starts changing. Moreover, you are most likely writing imperatively, using a syntax specific to the dataframe library. This means the scripts responsible for analyzing data are not very portable. SQL, on the other hand, can be much more intuitive to write since it is a declarative language, and can be ported to practically any other database system.
+If you use a data frame library like [collapse](https://github.com/SebKrantz/collapse), [pandas](https://github.com/pandas-dev/pandas), [data.table](https://github.com/Rdatatable/data.table), [modin](https://github.com/modin-project/modin), then you are most likely not enjoying the benefits of query optimization techniques. This means your optimizations need to be applied by hand, which is not sustainable if your data starts changing. Moreover, you are most likely writing imperatively, using a syntax specific to the dataframe library. This means the scripts responsible for analyzing data are not very portable. SQL, on the other hand, can be much more intuitive to write since it is a declarative language, and can be ported to practically any other database system.
 
 ## Summary of All Optimizers
 
@@ -333,4 +333,4 @@ If there are multiple filters on a column, the order in which these filters are 
 
 ## Conclusion
 
-A well-written optimizer can provide significant performance improvements when allowed to optimize freely. Not only can the optimizer apply the many optimization rules a human might naturally miss, an optimizer can respond to changes in the data. Some optimizations can result in a performance improvement of 100×, which might be the difference when deciding to use analytical system _A_ vs. analytical system _B_. With DuckDB, all optimization rules are applied automatically to every query, so you can continually enjoy the benefits. Hopefully this blog post has convinced you to consider the optimizer next time you hear about the next database that has everyones ears burning.
+A well-written optimizer can provide significant performance improvements when allowed to optimize freely. Not only can the optimizer apply the many optimization rules a human might naturally miss, an optimizer can respond to changes in the data. Some optimizations can result in a performance improvement of 100×, which might be the difference when deciding to use analytical system _A_ vs. analytical system _B_. With DuckDB, all optimization rules are applied automatically to every query, so you can continually enjoy the benefits. Hopefully this blog post has convinced you to consider the optimizer next time you hear about the next database that has everyone's ears burning.
