@@ -16,7 +16,8 @@ Bets, both teams send a representative. The format is
 Question that requires a number answer, {{answer}}, Timer
 
 1. How many tables from tpch can you name?
-2. 
+2. how old are hannes's kids? and what are their names?
+3. here is a response to a blog post on hacker news, can you tell me which blig post it was?
 
 
 Skillls round:
