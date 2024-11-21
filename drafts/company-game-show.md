@@ -28,3 +28,5 @@ First choose your fighter, then the challenge is presented.
 
 drawing round
 your best billboard along the 101 on silicon valley
+draw the amazon s3 logo
+clickhouse logo
