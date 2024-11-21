@@ -25,3 +25,6 @@ First choose your fighter, then the challenge is presented.
 - Who can type the fastest
 - Who can write a query to get me X answer the fastest
 - As a group, find the best duck-themed trinket/souvenoir under 50 euros. We will have a surprise guest to judge the items.
+
+drawing round
+your best billboard along the 101 on silicon valley
