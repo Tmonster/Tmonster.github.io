@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Self-driving technology is distracts from sustainable solutions caused by car utopias
+title: Autonomous vehicle promises distract us from sustainable transportation solutions
 gh-repo: Tmonster/tmonster.github.io
 gh-badge: [star, fork, follow]
 tags: [Self-Driving, AI]
