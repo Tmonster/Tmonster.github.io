@@ -30,3 +30,5 @@ drawing round
 your best billboard along the 101 on silicon valley
 draw the amazon s3 logo
 clickhouse logo
+
+order these apple operating systems based on when they were released
